@@ -3,8 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
+import { init } from 'utils/actions'
 import { IHotModule, Redux } from '../typings'
 import rootReducers from './reducers'
+import rootSagas from './sagas'
 
 declare const module: IHotModule
 
@@ -33,11 +35,9 @@ const configureStore = (initialState: Object = {}) => {
         })
     }
 
-    // persistStore(store)
+    store.dispatch(init())
 
-    // store.dispatch(init())
-
-    // rootSagas.map((saga: any) => sagaMiddleware.run(saga, store.dispatch))
+    rootSagas.map((saga: any) => sagaMiddleware.run(saga, store.dispatch))
 
     return store
 }

@@ -198,3 +198,12 @@ export interface TypedExtractor {
         key10: K10,
     ): T[K1][K2][K3][K4][K5][K6][K7][K8][K9][K10]
 }
+
+export type SelectorType<T extends SelectorFunction | SelectorBasic> = T extends SelectorFunction
+    ? ReturnType<ReturnType<T>>
+    : ReturnType<T>
+
+type SelectorFunction = (...args) => Function
+type SelectorBasic = (...args) => any
+
+export type ApiError = Error | boolean

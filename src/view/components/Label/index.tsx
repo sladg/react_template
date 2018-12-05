@@ -1,4 +1,4 @@
-import React, { SFC, ReactChild } from 'react'
+import React, { ReactChild, SFC } from 'react'
 import { StyledLabel } from './styled'
 
 interface Props {

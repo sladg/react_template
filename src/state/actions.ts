@@ -1,29 +1,19 @@
 import { createFormAction } from 'redux-form-saga'
+import { ReduxState } from './types'
 
 export enum Types {
-    FORM_SUBMIT = 'project/SIGN_IN_SUCCESS',
-    TEMP = 'project/TEMP',
-    TEMP_SUCCESS = 'project/TEMP_SUCCESS',
-    TEMP_FAILURE = 'project/TEMP_FAILURE',
+    FORM_SUBMIT = 'project/FORM_SUBMIT',
+    FORM_SUBMIT_SUCCESS = 'project/FORM_SUBMIT_SUCCESS',
+    FORM_SUBMIT_FAILUTE = 'project/FORM_SUBMIT_FAILUTE',
 }
 
 export const submitProjectForm = createFormAction(Types.FORM_SUBMIT)
 
-export function temp() {
-    return {
-        type: Types.TEMP,
-        payload: {},
-    }
-}
-export function tempSuccess() {
-    return {
-        type: Types.TEMP_SUCCESS,
-        payload: {},
-    }
-}
-export function tempFailure(error: Error) {
-    return {
-        type: Types.TEMP_FAILURE,
-        payload: { error },
-    }
-}
+export const submitProjectFormSuccess = (data: ReduxState['formData']['data']) => ({
+    type: Types.FORM_SUBMIT_SUCCESS,
+    payload: { data },
+})
+export const submitProjectFormFailute = (error: Error) => ({
+    type: Types.FORM_SUBMIT_FAILUTE,
+    payload: { error },
+})

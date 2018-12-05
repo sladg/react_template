@@ -1,5 +1,5 @@
-import { INIT } from './actions'
 import { AnyAction, Reducer } from 'redux'
+import { INIT } from './actions'
 
 export default function createReducer(initialState: any, handlers: object): Reducer<any> {
     if (!initialState) {

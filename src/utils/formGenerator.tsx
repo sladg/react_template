@@ -1,15 +1,23 @@
-import Select from 'antd/es/select'
+import 'antd/es/date-picker/style/css'
 import 'antd/es/select/style/css'
-import Spin from 'antd/es/spin'
 import 'antd/es/spin/style/css'
-import Switch from 'antd/es/switch'
 import 'antd/es/switch/style/css'
+import locale from 'antd/lib/date-picker/locale/en_US'
 
+import RangePicker from 'antd/es/date-picker/RangePicker'
+import Select from 'antd/es/select'
+import Spin from 'antd/es/spin'
+import Switch from 'antd/es/switch'
+import moment from 'moment'
 import React, { ChangeEventHandler, FormEventHandler, ReactNode } from 'react'
 import { Field } from 'redux-form'
 
 import InputGroup from '../../src/view/components/InputGroup'
 import { SectionTitle } from './form.styled'
+
+const disabledDate = (current) => {
+    return current && current < moment().endOf('day')
+}
 
 export interface FormInput {
     title?: string
@@ -34,7 +42,7 @@ export interface FormInput {
     suffix?: ReactNode
     spellCheck?: boolean
     autoFocus?: boolean
-    formInputType?: 'select' | 'switch' | 'sectionTitle'
+    formInputType?: 'select' | 'switch' | 'sectionTitle' | 'datetime'
     label?: string
     options?: Option[]
     loading?: boolean
@@ -53,7 +61,6 @@ const Option = Select.Option
 
 export default function formGenerator(fields: FormInput[]) {
     return fields.map((data: FormInput, key: number) => {
-        console.log(data)
         return <Field key={key} name={data.name} {...data} component={renderField} />
     })
 }
@@ -104,6 +111,27 @@ const renderField = (props) => {
                         </Select>
                     }
                 />
+            )
+        }
+        case 'datetime': {
+            return (
+                <div>
+                    <RangePicker
+                        {...props}
+                        locale={locale}
+                        onChange={input.onChange}
+                        disabledDate={disabledDate}
+                        showTime={{
+                            hideDisabledOptions: true,
+                            defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
+                        }}
+                        format="YYYY-MM-DD HH:mm:ss"
+                    />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
             )
         }
         default: {

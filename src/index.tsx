@@ -1,11 +1,12 @@
-import './stylesheets/css/global.css'
 import 'antd/dist/antd.min.css'
 import 'sanitize.css'
+import './stylesheets/css/global.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
+import 'stylesheets/GlobalTheme'
 import configureStore from './state/configureStore'
 import { IHotModule } from './typings'
 import Homepage from './view/routes/Homepage'

@@ -44,7 +44,7 @@ export const InputGroupWrapper: any = styled.div`
 `
 
 export const Error = styled.div`
-    color: #FA6556;
+    color: #fa6556;
     position: absolute;
     font-size: 1.2rem;
 `

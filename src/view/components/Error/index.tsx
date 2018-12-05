@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import { Wrapper, TextWrap } from './styled'
+import { TextWrap, Wrapper } from './styled'
 
 interface Props {
     absolute?: boolean

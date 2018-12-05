@@ -5,11 +5,11 @@ const join = (rules: any) => (value: any, data: any) =>
 export function email(value) {
     // Let's not start a debate on email regex. This is just for an example app!
     if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        return 'formErrors.email'
+        return 'Incorrect email!'
     }
 }
 
-export const required = requiredWithMessage('formErrors.required')
+export const required = requiredWithMessage('This is field is required!')
 
 export function requiredWithMessage(messageKey: string) {
     return (value: any) => {
@@ -23,23 +23,13 @@ export function createValidator(rules) {
     return (data: any = {}) => {
         const errors = {}
         Object.keys(rules).forEach((key: any) => {
-            const rule = join([].concat(rules[key])) // concat enables both functions and arrays of functions
+            const rule = join([].concat(rules[key]))
             const error = rule(data[key], data)
             if (error) {
                 errors[key] = error
             }
         })
         return errors
-    }
-}
-
-export function equalPasswords(field: string) {
-    return (value: any, data: any) => {
-        if (data) {
-            if (value !== data[field]) {
-                return 'formErrors.equalPasswords'
-            }
-        }
     }
 }
 
@@ -63,67 +53,22 @@ export function isFieldNotEqual(field, equalTo) {
     }
 }
 
-export function number(value) {
+export const isNumber = (value) => {
     if (!isEmpty(value) && !Number.isInteger(Number(value))) {
-        return 'formErrors.number'
+        return 'Values must be a number!'
     }
 }
 
-export function greaterThan(minimum: number) {
-    return (value: any) => {
-        const numValue = Number(value)
-        if (!Number.isInteger(numValue) || numValue <= minimum) {
-            return 'formErrors.greaterThan'
-        }
-    }
-}
-
-export function greaterThanDate(cmpDateName: string, errorText: string) {
-    return (value: any, data: any) => {
-        if (value === null) {
-            return
-        }
-
-        const cmpDate = new Date(data[cmpDateName])
-        const valueDate = new Date(value)
-        if (!isNaN(cmpDate.valueOf()) && (isNaN(valueDate.valueOf()) || valueDate <= cmpDate)) {
-            return errorText
-        }
-    }
-}
-
-export function lessThanDate(cmpDateName: string, errorText: string) {
-    return (value: any, data: any) => {
-        if (value === null) {
-            return
-        }
-
-        const cmpDate = new Date(data[cmpDateName])
-        const valueDate = new Date(value)
-        if (!isNaN(cmpDate.valueOf()) && (isNaN(valueDate.valueOf()) || valueDate >= cmpDate)) {
-            return errorText
-        }
-    }
-}
-
-export function greaterThanNow(errorText: string) {
-    return (value: any, data: any) => {
-        if (value === null) {
-            return
-        }
-
-        const cmpDate = new Date()
-        const valueDate = new Date(value)
-        if (!isNaN(cmpDate.valueOf()) && (isNaN(valueDate.valueOf()) || valueDate <= cmpDate)) {
-            return errorText
-        }
+export const isText = (value) => {
+    if (!isEmpty(value) && value.match(/[0-9]/)) {
+        return 'Values must not contain numbers!'
     }
 }
 
 export function minLength(minimum) {
     return (value: any) => {
         if (!isEmpty(value) && value.length < minimum) {
-            return 'Too short password'
+            return 'Value is too short!'
         }
     }
 }
@@ -131,7 +76,7 @@ export function minLength(minimum) {
 export function maxLength(maximum) {
     return (value: any) => {
         if (!isEmpty(value) && value.length > maximum) {
-            return 'Too long password'
+            return 'Value is too long!'
         }
     }
 }
@@ -140,7 +85,7 @@ export function mapFieldRequired() {
     return (value: any) => {
         if (!value || isEmpty(value['lat'])) {
             const result = {}
-            result['name'] = 'formErrors.required'
+            result['name'] = 'This field is required!'
             return result
         }
     }
@@ -148,24 +93,24 @@ export function mapFieldRequired() {
 
 export function containsUppercase(value) {
     if (!isEmpty(value) && !/(.*[A-Z].*)/.test(value)) {
-        return 'formErrors.mustContainUpper'
+        return 'Value must contain upper letter!'
     }
 }
 
 export function containsLowercase(value) {
     if (!isEmpty(value) && !/(.*[a-z].*)/.test(value)) {
-        return 'formErrors.mustContainLower'
+        return 'Value must contain lower case letter!'
     }
 }
 
 export function containsSpecialCharacted(value) {
     if (!isEmpty(value) && !/(.*[-+_!@#$%^&*.,?].*)/.test(value)) {
-        return 'formErrors.mustContainSpecial'
+        return 'Value must contain special character!'
     }
 }
 
 export function containsDigit(value) {
     if (!isEmpty(value) && !/(.*\d.*)/.test(value)) {
-        return 'formErrors.mustContainDigit'
+        return 'Value must contain digit!'
     }
 }

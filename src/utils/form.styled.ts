@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const InputRow = styled.div`
     margin-bottom: 20px;
     position: relative;
-    position: relative;
     input {
         border-color: ${(props: any) => (props.error ? props.theme.colors.danger + ' !important' : 'inherit')};
 
