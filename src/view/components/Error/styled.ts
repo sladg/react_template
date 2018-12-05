@@ -1,4 +1,5 @@
-import { Icon } from 'antd'
+import Icon from 'antd/es/icon'
+import 'antd/es/icon/style/css'
 import styled from 'styled-components'
 
 interface WrapperProps {

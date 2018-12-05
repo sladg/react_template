@@ -2,13 +2,6 @@ export const isEmpty = (value: string) => value === undefined || value === null 
 const join = (rules: any) => (value: any, data: any) =>
     rules.map((rule: any) => rule(value, data)).filter((error: any) => !!error)[0 /* first error */]
 
-export function email(value) {
-    // Let's not start a debate on email regex. This is just for an example app!
-    if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        return 'Incorrect email!'
-    }
-}
-
 export const required = requiredWithMessage('This is field is required!')
 
 export function requiredWithMessage(messageKey: string) {

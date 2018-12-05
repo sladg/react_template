@@ -1,10 +1,11 @@
-import { Input } from 'antd'
+import Input from 'antd/es/input'
+import 'antd/es/input/style/css'
 import React from 'react'
 
 import Label from '../Label'
 import { Error, InputGroupWrapper } from './styled'
 
-const InputGroup = ({ input, meta, label, staticLabel, formInput, customInput, isCustomLabel, customRender, ...rest }: any) => {
+const InputGroup = ({ input, meta, label, staticLabel, formInput, customInput, isCustomLabel, customRender, ...rest }) => {
     const FormInput = formInput || Input
 
     if (customInput) {

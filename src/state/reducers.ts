@@ -2,9 +2,9 @@ import { reducer as formReducer } from 'redux-form'
 import createReducer from '../utils/createReducer'
 import { Types } from './actions'
 import * as actions from './actions'
-import { ReduxState } from './types'
+import { ProjectState } from './types'
 
-export const initialState: ReduxState = {
+export const initialState: ProjectState = {
     formData: {
         loading: false,
         data: null,
@@ -13,14 +13,14 @@ export const initialState: ReduxState = {
 }
 
 const project = createReducer(initialState, {
-    [Types.FORM_SUBMIT_SUCCESS]: (state: ReduxState, action: ReturnType<typeof actions.submitProjectFormSuccess>): ReduxState => ({
+    [Types.FORM_SUBMIT_SUCCESS]: (state: ProjectState, action: ReturnType<typeof actions.submitProjectFormSuccess>): ProjectState => ({
         ...state,
         formData: {
             ...state.formData,
             ...action.payload,
         },
     }),
-    [Types.FORM_SUBMIT_FAILUTE]: (state: ReduxState, action: ReturnType<typeof actions.submitProjectFormFailute>): ReduxState => ({
+    [Types.FORM_SUBMIT_FAILUTE]: (state: ProjectState, action: ReturnType<typeof actions.submitProjectFormFailute>): ProjectState => ({
         ...state,
         formData: {
             ...state.formData,

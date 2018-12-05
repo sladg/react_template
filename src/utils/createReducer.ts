@@ -1,7 +1,7 @@
-import { AnyAction, Reducer } from 'redux'
+import { Reducer } from 'redux'
 import { INIT } from './actions'
 
-export default function createReducer(initialState: any, handlers: object): Reducer<any> {
+export default (initialState: any, handlers: object): Reducer<any> => {
     if (!initialState) {
         throw new Error('undefined passed to `createReducer` as initial state.')
     }
@@ -10,7 +10,7 @@ export default function createReducer(initialState: any, handlers: object): Redu
         throw new Error('Invalid handlers object passed to `createReducer`')
     }
 
-    return function reducer(state: any = initialState, action: AnyAction) {
+    return function reducer(state: any = initialState, action) {
         let resultState = state
         if (action.type === INIT) {
             if (initialState.asMutable) {

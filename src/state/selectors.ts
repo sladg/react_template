@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect'
 import { _get } from 'utils/get'
 
-import { ReduxState } from './types'
+import { Redux } from 'typings'
+import { ProjectState } from './types'
 
-type RootSelector = (val: any) => ReduxState['formData']
+type RootSelector = (val) => ProjectState['formData']
 
-const selectFormSubstate: RootSelector = (state) => _get(state, 'project', 'formData')
+const selectFormSubstate: RootSelector = (state: Redux) => _get(state, 'project', 'formData')
 
 export const selectSubmitedData = createSelector(
     selectFormSubstate,

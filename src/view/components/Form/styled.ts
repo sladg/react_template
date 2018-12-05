@@ -14,7 +14,7 @@ export const FormWrapper = styled.div`
 export const SubmitButton: any = styled(Button as any)`
     cursor: pointer;
     border: 0;
-    background-color: #4482ff;
+    background-color: #037ef3;
     border-radius: 4px;
     color: #fff;
     height: 44px;

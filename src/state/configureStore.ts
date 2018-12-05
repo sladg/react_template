@@ -37,7 +37,7 @@ const configureStore = (initialState: Object = {}) => {
 
     store.dispatch(init())
 
-    rootSagas.map((saga: any) => sagaMiddleware.run(saga, store.dispatch))
+    rootSagas.map((saga) => sagaMiddleware.run(saga, store.dispatch))
 
     return store
 }

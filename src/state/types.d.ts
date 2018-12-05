@@ -1,6 +1,6 @@
 import { initialState } from './reducers'
 
-export type ReduxState = {
+export type ProjectState = {
     formData: {
         loading: boolean
         data: {

@@ -1,5 +1,5 @@
 import { createFormAction } from 'redux-form-saga'
-import { ReduxState } from './types'
+import { ProjectState } from './types'
 
 export enum Types {
     FORM_SUBMIT = 'project/FORM_SUBMIT',
@@ -9,7 +9,7 @@ export enum Types {
 
 export const submitProjectForm = createFormAction(Types.FORM_SUBMIT)
 
-export const submitProjectFormSuccess = (data: ReduxState['formData']['data']) => ({
+export const submitProjectFormSuccess = (data: ProjectState['formData']['data']) => ({
     type: Types.FORM_SUBMIT_SUCCESS,
     payload: { data },
 })

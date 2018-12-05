@@ -67,6 +67,11 @@
             "single",
             "jsx-double"
         ],
+        "import-blacklist": [
+            true,
+            "lodash",
+            "antd"
+        ],
         "whitespace": [
             true,
             "check-decl",
@@ -74,7 +79,12 @@
             "check-module",
             "check-type"
         ],
-        "no-unused-variable": true
+        "no-unused-variable": true,
+        "no-duplicate-switch-case": true,
+        "no-duplicate-super": true,
+        "no-return-await": true,
+        "prefer-object-spread": true,
+        "no-arg": true
     },
     "linterOptions": {
         "exclude": [
